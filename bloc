@@ -1,0 +1,41 @@
+ 
+  de base model
+  importaremmos id
+
+  def __str_(self)
+  validar la forma que se imprime
+
+  *métodos* de instancias def save(*self*)
+
+  def dict(self)
+  debo de quitarlo de mi aplicación y guardarlo por si la misma cae.
+
+  convertir objeto a date_time
+  date(tipo de dato complejo que se ocnvertirá a un string y luego lo guardo en json, aunque al revés podría en python pero es un error)
+  self dia: 2
+  self mes: 2
+  año: 5
+  todo por separado con date es complejo
+
+  DEF SAVE
+  el save aún no se guarda en ningún lado cuando lo definimos
+
+  caso de pruebas, base model con id diferentes?
+  fecha correcta, update_date correcto, o que se cambie bien(aunque dará un diferencia horaria de segundos)
+  se imprime bien?
+  validar que me de un tipo string correctamente
+
+  obj--instancia--json (serealización y deserialización)
+
+  obj--dict, cargo cada uno de los atributos y convierto la fecha, a través de un diccionario.
+
+  metodo de __init__ para crear un objeto
+  init(slef, *args, **kwargs)--"kwargs",cualquier tipo de argumentos
+  qué datos tiene?, los tiene? recupero el objeto, cargado en otra posiion de memoria, necesito saber el id que necesito(creado el 2/2/2)
+  recorrer los diccionarios y las key valores
+
+
+  STORAGE
+  de archivo a diccionario
+  como escribo?, crear le campo de diccionario, methodo "reload"
+  y tendremos una lista de objectos donde se conectarán.
