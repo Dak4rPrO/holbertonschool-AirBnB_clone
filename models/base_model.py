@@ -22,3 +22,11 @@ class BaseModel:
         
     def save(self):
         self.updated_at = datetime.datetime.now()
+        models.storage.save()
+
+    def to_dict(self):
+        """return a dictionary containning all keys/values of dict"""
+        self.created_at = self.created_at.isoformat()
+        self.update_at = self.update_at.isoformat()
+        self.__dict__['__class__'] = self.__class__.__name__
+        return __dict__
