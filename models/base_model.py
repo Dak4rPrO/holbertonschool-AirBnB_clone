@@ -30,3 +30,15 @@ class BaseModel:
         self.update_at = self.update_at.isoformat()
         self.__dict__['__class__'] = self.__class__.__name__
         return __dict__
+
+    def __init__(self, *args, **kwargs):
+        """method to generate a dictionary of an istance"""
+        if **kwargs:
+            for name, value in kwargs.items():
+                if name == [__'class'__]:
+                    pass
+                else
+                    ['id'] in kwargs.items():
+
+
+
