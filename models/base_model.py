@@ -29,20 +29,28 @@ class BaseModel:
         self.created_at = self.created_at.isoformat()
         self.updated_at = self.updated_at.isoformat()
         self.__dict__['__class__'] = self.__class__.__name__
-<<<<<<< HEAD
         return __dict__
 
     def __init__(self, *args, **kwargs):
         """method to generate a dictionary of an istance"""
+        time_format = '%Y-%m-%dT%H:%M:%S.%f'
         if **kwargs:
             for name, value in kwargs.items():
-                if name == [__'class'__]:
+                if name == ['__class__']:
                     pass
-                else
-                    ['id'] in kwargs.items():
-
-
-
-=======
+                else:
+                    setattr(self, name, value)
+                if 'id' in kwargs.keys():
+                    self.id = kwargs['id']
+                if 'created_at' in kwargs.keys():
+                    self.created_at = datetime.strptime(kwargs['created_at'],
+                                                        time_format)
+                if 'update_At' in kwargs.keys():
+                    self.update_at = datetime.strptime(kwargs['update_at'],
+                                                        time_format)
+                else:
+                    self.id = str(uuid.uuid4())
+                    self.create_at = datetime.now()
+                    self.update_at = self.created_at
+                    models.storage.new(self)
         return self.__dict__
->>>>>>> e800a5b4d89221f30ed0550cb71f05886bf28e6d
