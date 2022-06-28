@@ -7,19 +7,37 @@ import uuid
 import sys
 
 
-class BaseModel:
-    
+class BaseModel():
     """ class BaseModel that defines all common attributes/methods for other classes """
     
-    def __init__(self, *arg, **kwars):
+    def __init__(self, *arg, **kwargs):
         """def init"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-    
+        
+        if kwargs is not None and len(kwargs) != 0:
+            for name, value in kwargs.items():
+                if name == ['__class__']:
+                    pass
+                else:
+                   setattr(self, name, value)
+                if 'id' in kwargs.keys():
+                    self.id = kwargs['id']
+                if 'created_at' in kwargs.keys():
+                    self.created_at = datetime.strptime(kwargs['created_at'],
+                                                        time_format)
+                if 'updated_at' in kwargs.keys():
+                    self.updated_at = datetime.strptime(kwargs['updated_at'],
+                                                        time_format)
+                else:
+                    return __dict__
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+            models.storage.new(self)
+
     def __str__(self):
         """ def str """
-        return(f"['__class__'] ({self.id}) {self.__dict__}")
+        return(f"['__class__.__name__'] ({self.id}) {self.__dict__}")
         
     def save(self):
         """ def save """
@@ -32,25 +50,3 @@ class BaseModel:
         self.updated_at = self.updated_at.isoformat()
         self.__dict__['__class__'] = self.__class__.__name__
         return __dict__
-
-    def __init__(self, *args, **kwargs):
-        """method to generate a dictionary of an istance"""
-        if kwargs is not None and len(kwargs) != 0:
-            for name, value in kwargs.items():
-                if name == ['__class__']:
-                    pass
-                else:
-                    setattr(self, name, value)
-                if 'id' in kwargs.keys():
-                    self.id = kwargs['id']
-                if 'created_at' in kwargs.keys():
-                    self.created_at = datetime.strptime(kwargs['created_at'],
-                                                        time_format)
-                if 'update_At' in kwargs.keys():
-                    self.update_at = datetime.strptime(kwargs['update_at'],
-                                                        time_format)
-                else:
-                    self.id = str(uuid.uuid4())
-                    self.create_at = datetime.now()
-                    self.update_at = self.created_at
-                    models.storage.new(self)
