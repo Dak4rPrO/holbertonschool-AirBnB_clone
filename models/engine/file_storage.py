@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
 
-"""
-define the storage
-"""
+""" define the storage"""
 
 
 import json
@@ -39,7 +37,7 @@ class FileStorage:
     def new(self, obj):
         """set a new object in __objects dictionary,
         with key <obj class name>.id"""
-        i = '{}.{}'format(obj.__class__.__name__, obj.id)
+        i = '{}.{}'.format(obj.__class__.__name__, obj.id)
         FileStorage.__objects[i] = obj
 
     def save(self):
@@ -50,4 +48,3 @@ class FileStorage:
             save_dict[i] = value_dict
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(save_dict, f)
-

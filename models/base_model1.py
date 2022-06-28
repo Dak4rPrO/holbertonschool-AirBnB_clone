@@ -5,7 +5,6 @@
 from datetime import datetime
 import uuid
 import sys
-"""from models import storage"""
 
 
 class BaseModel():
@@ -16,23 +15,26 @@ class BaseModel():
         
         if kwargs is not None and len(kwargs) != 0:
             for name, value in kwargs.items():
-                if name == 'id':
-                    self.id = value
-                elif name == 'created_at':
-                    self.created_at = datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f")
-                elif name == 'updated_at':
-                    self.updated_at = datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f")               
-                elif name == "__class__":
+                if name == ['__class__']:
                     pass
                 else:
                    setattr(self, name, value)
+                if 'id' in kwargs.keys():
+                    self.id = kwargs['id']
+                
+                if 'created_at' in kwargs.keys():
+                    self.created_at = datetime.strptime(kwargs['created_at'],
+                                                        time_format)
+            if 'updated_at' in kwargs.keys():
+                self.updated_at = datetime.strptime(kwargs['updated_at'],
+                                                    time_format)
+            else:
+                return self.__dict__
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            """storage.new(self)"""
+            self.updated_at = self.created_at
+            """models.storage.new(self)"""
 
     def __str__(self):
         """ def str """
