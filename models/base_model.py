@@ -12,15 +12,17 @@ class BaseModel:
     """ class BaseModel that defines all common attributes/methods for other classes """
     
     def __init__(self, *arg, **kwars):
+        """def init"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
     
     def __str__(self):
         """ def str """
-        return(f"[BaseModel] ({self.id}) {self.__dict__}")
+        return(f"['__class__'] ({self.id}) {self.__dict__}")
         
     def save(self):
+        """ def save """
         self.updated_at = datetime.now()
         models.storage.save()
 
@@ -33,8 +35,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """method to generate a dictionary of an istance"""
-        time_format = '%Y-%m-%dT%H:%M:%S.%f'
-        if **kwargs:
+        if kwargs is not None and len(kwargs) != 0:
             for name, value in kwargs.items():
                 if name == ['__class__']:
                     pass
@@ -53,4 +54,3 @@ class BaseModel:
                     self.create_at = datetime.now()
                     self.update_at = self.created_at
                     models.storage.new(self)
-        return self.__dict__
