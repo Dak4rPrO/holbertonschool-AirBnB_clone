@@ -11,17 +11,15 @@ class BaseModel():
 
     def __init__(self, *arg, **kwargs):
         """def init"""
-
+        time_set = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs is not None and len(kwargs) != 0:
             for name, value in kwargs.items():
                 if name == 'id':
                     self.id = value
                 elif name == 'created_at':
-                    self.created_at = datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.strptime(value, time_set)
                 elif name == 'updated_at':
-                    self.updated_at = datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f")               
+                    self.updated_at = datetime.strptime(value, time_set)
                 elif name == "__class__":
                     pass
                 else:
