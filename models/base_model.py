@@ -1,20 +1,17 @@
 #!/usr/bin/python3
-"""class BaseModel"""
-
-
 from datetime import datetime
 import uuid
-import sys
 import models
 """from models import storage"""
 
 
 class BaseModel():
-    """ class BaseModel that defines all common attributes/methods for other classes """
-    
+    """ class BaseModel that defines all common
+    attributes/methods for other classes """
+
     def __init__(self, *arg, **kwargs):
         """def init"""
-        
+
         if kwargs is not None and len(kwargs) != 0:
             for name, value in kwargs.items():
                 if name == 'id':
@@ -28,7 +25,7 @@ class BaseModel():
                 elif name == "__class__":
                     pass
                 else:
-                   setattr(self, name, value)
+                    setattr(self, name, value)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -38,7 +35,7 @@ class BaseModel():
     def __str__(self):
         """ def str """
         return(f" [{self.__class__.__name__}] ({self.id}) {self.__dict__}")
-        
+
     def save(self):
         """ def save """
         self.updated_at = datetime.now()
