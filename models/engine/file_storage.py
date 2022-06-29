@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#/usr/bin/python3
 """
 define the storage
 """
@@ -21,15 +21,13 @@ class FileStorage:
     def new(self, obj):
         """set a new object in __objects dictionary,
         with key <obj class name>.id"""
-        name = '{}.{}'.format(obj.__class__.__name__, obj.id)
+        name = obj.__class__.__name__ + "." + obj.id
         FileStorage.__objects[name] = obj
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
-        save_dict = {}
-        for name, value in FileStorage.__objects.items():
-            value_dict = value.to_dict()
-            save_dict[name] = value_dict
+        save_dict = {name: value.to_dict() for name,
+                    value in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(save_dict, f)
 
@@ -43,4 +41,4 @@ class FileStorage:
                     obj = BaseModel(**value)
                     FileStorage.__objects[name] = obj
         except FileNotFoundError:
-            return
+           return

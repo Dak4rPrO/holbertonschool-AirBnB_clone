@@ -4,6 +4,7 @@ command interpreter
 """
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
 	"""class of prompt"""
 
