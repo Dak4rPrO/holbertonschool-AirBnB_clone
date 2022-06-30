@@ -1,18 +1,22 @@
 #/usr/bin/python3
-"""
-define the storage
-"""
+"""define the storage"""
+
 import json
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
-class FileStorage:
+class FileStorage(BaseModel):
     """class that stores objects in JSON strings
     file_path (str): path of the JSON file
     objects (dict): stores all objects by class"""
 
     __file_path = 'file.json'
-    __objects = {}
 
     def all(self):
         """returns the dictionary __objects"""
