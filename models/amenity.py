@@ -2,5 +2,5 @@
 
 """ class amenity """
 
-class amenity:
+class Amenity:
     name = ""

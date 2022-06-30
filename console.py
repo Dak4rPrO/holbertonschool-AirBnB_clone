@@ -2,8 +2,7 @@
 """
 command interpreter
 """
-import cmd
-from models.engine.file_storage import FileStorage
+"""from models import storage"""
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -11,9 +10,11 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+import cmd
 
 class HBNBCommand(cmd.Cmd):
 	"""class of prompt"""
+	prompt = "(hbnb)"
 
 	def do_quit(self, arg):
 		"""quit the shell"""

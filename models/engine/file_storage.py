@@ -3,7 +3,6 @@
 
 import json
 from models.base_model import BaseModel
-from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
