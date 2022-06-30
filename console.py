@@ -14,16 +14,15 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
 	"""class of prompt"""
-	prompt = '(hbnb)'
+	prompt = '(hbnb) '
 
 	def do_quit(self, arg):
 		"""quit the shell"""
-		return 1
+		return True
 
 	def do_EOF(self, arg):
 		"""quit the shell"""
-		print()
-		return 1
+		return True
 
 	def emptyline(self):
 		"""don't do anything if there's an empty line"""
