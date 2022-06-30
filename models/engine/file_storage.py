@@ -1,4 +1,4 @@
-#/usr/bin/python3
+#!/usr/bin/python3
 """define the storage"""
 
 import json
@@ -25,7 +25,7 @@ class FileStorage():
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
         with open(FileStorage.__file_path, 'w') as f:
-            json.dump(self.__objects, f, default = str)
+            json.dump(self.__objects, f, default=str)
 
     def reload(self):
         """deserialize the JSON file to __objects"""
@@ -33,4 +33,4 @@ class FileStorage():
             with open(FileStorage.__file_path, 'r') as f:
                 FileStorage.__objects = json.load(f)
         except Exception:
-           return
+            return
