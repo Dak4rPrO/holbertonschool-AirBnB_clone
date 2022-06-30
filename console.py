@@ -14,7 +14,7 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
 	"""class of prompt"""
-	prompt = "(hbnb)"
+	prompt = '(hbnb)'
 
 	def do_quit(self, arg):
 		"""quit the shell"""
