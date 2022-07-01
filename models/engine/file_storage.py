@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 #!usr/bin/python3
 """
 define the storage
 """
-=======
 #!/usr/bin/python3
 """define the storage"""
 
->>>>>>> 03c8501d6dc05a32638f59e139eb8bb4e031580d
 import json
 
 

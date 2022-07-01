@@ -28,6 +28,39 @@ class HBNBCommand(cmd.Cmd):
         """don't do anything if there's an empty line"""
         return 0
 
+    def show(self, args):
+        """prints the string representaiton of an string"""
+        arg = pase(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class doesn't exist **")
+        elif arg[0] not in HBNBcommand.__class__:
+            print("** class name missing **")
+        elif len(arg) == 1:
+            print("** instance id  mising **")
+        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+            print("** no instance found **")
+
+    def do_destroy(self, args):
+        """deletes aninstance based on the class name and id"""
+        arg = parse(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in HBNBcommand.__class__:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+            print("** no instance found **")
+
+    def all(self, args):
+        """prints allstring representation of all instances
+        based or not on the class name"""
+        arg = parse(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class name doesn't exist **") 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
