@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+
+"""from models import storage"""
+
 from datetime import datetime
 import uuid
-import models
-"""from models import storage"""
+from models import storage
 
 
 class BaseModel():
@@ -28,7 +30,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            storage.new(self)
 
     def __str__(self):
         """ def str """
@@ -36,7 +38,7 @@ class BaseModel():
 
     def save(self):
         """ def save """
-        models.storage.save()
+        storage.save()
         self.updated_at = datetime.now()
         self.created_at = datetime.now()
 
