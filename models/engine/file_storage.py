@@ -23,7 +23,6 @@ class FileStorage():
         """Serializes __objects to the JSON file (path: __file_path)"""
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(self.__objects, f, default=str)
-
     
     def reload(self):
         """deserialize the JSON file to __objects"""

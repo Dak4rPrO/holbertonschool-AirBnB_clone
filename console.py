@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -15,56 +16,64 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """class of prompt"""
     prompt = '(hbnb) '
+    my_dict= {'Amenity' : Amenity, 'BaseModel' : BaseModel, 'City' : City,
+              'Place' : Place, 'Review' : Review, 'State' : State, 'User' : User}
 
-    def do_quit(self, arg):
+    def do_quit(self, args):
         """ Quit command to exit the program """
         return True
 
-    def do_EOF(self, arg):
+    def do_EOF(self, args):
         """ exit the program"""
         return True
 
     def emptyline(self):
+        """ aca deje solo el self, porque si pones el args, da Traceback. cuando leas esto, borra el comentario xd """
         """dont do anything if theres an empty line"""
         pass
-    
+
     def do_create(self, args):
-        arg = parse(args)
-        if len(arg) == 0:
+        """ def create """
+        args.split()
+        with open(file.json, 'r') as f:
+            json.dump(self., f)
+        if len(args) == 0:
             print("** class name missing **")
+        elif args[0] not in self.my_dict:
+            print("** class doesn't exist **")
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
-        arg = parse(args)
+        args.split()
         objdict = storage.all()
-        if len(arg) == 0:
+        if len(args) == 0:
             print("** class doesn't exist **")
-        elif arg[0] not in HBNBcommand.__class__:
+        elif args[0] not in HBNBCommand.__class__:
             print("** class name missing **")
-        elif len(arg) == 1:
+        elif len(args) == 1:
             print("** instance id  mising **")
-        elif "{}.{}".format(arg[0], arg[1]) not in objdict:
+        elif "{}.{}".format(args[0], args[1]) not in objdict:
             print("** no instance found **")
 
     def do_destroy(self, args):
         """deletes an instance based on the class name and id"""
-        arg = parse(args)
+        args.split()
         objdict = storage.all()
-        if len(arg) == 0:
+        if len(args) == 0:
             print("** class name missing **")
-        elif arg[0] not in HBNBcommand.__class__:
+        elif args[0] not in HBNBCommand.__class__:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(arg[0], arg[1]) not in objdict:
+        elif "{}.{}".format(args[0], args[1]) not in objdict:
             print("** no instance found **")
 
     def all(self, args):
         """prints allstring representation of all instances
         based or not on the class name"""
-        arg = parse(args)
+        args.split()        
         objdict = storage.all()
-        if len(arg) == 0:
+        if len(args) == 0:
             print("** class name doesn't exist **") 
 
 if __name__ == '__main__':
