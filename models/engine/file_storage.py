@@ -13,6 +13,15 @@ class FileStorage:
 
     __file_path = 'file.json'
     __objects = {}
+    classes = {
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amentiy",
+        "Review"}
+
 
     def all(self):
         """returns the dictionary __objects"""
@@ -41,4 +50,38 @@ class FileStorage:
                     obj = BaseModel(**value)
                     FileStorage.__objects[name] = obj
         except FileNotFoundError:
-           return
+            return
+
+    def show(self, args):
+        """prints the string representaiton of an string"""
+        arg = pase(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class doesn't exist **")
+        elif arg[0] not in HBNBcommand.__class__:
+            print("** class name missing **")
+        elif len(arg) == 1:
+            print("** instance id  mising **")
+        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+            print("** no instance found **")
+
+    def do_destroy(self, args):
+        """deletes aninstance based on the class name and id"""
+        arg = parse(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in HBNBcommand.__class__:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+            print("** no instance found **")
+
+    def all(self, args):
+        """prints allstring representation of all instances
+        based or not on the class name"""
+        arg = parse(args)
+        objdict = storage.all()
+        if len(arg) == 0:
+            print("** class name doesn't exist **")
