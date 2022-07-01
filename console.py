@@ -17,20 +17,25 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
-        """quit the shell"""
+        """ Quit command to exit the program """
         return True
 
     def do_EOF(self, arg):
-        """quit the shell"""
+        """ exit the program"""
         return True
 
     def emptyline(self):
-        """don't do anything if there's an empty line"""
-        return 0
+        """dont do anything if theres an empty line"""
+        pass
+    
+    def do_create(self, args):
+        arg = parse(args)
+        if len(arg) == 0:
+            print("** class name missing **")
 
-    def show(self, args):
+    def do_show(self, args):
         """prints the string representaiton of an string"""
-        arg = pase(args)
+        arg = parse(args)
         objdict = storage.all()
         if len(arg) == 0:
             print("** class doesn't exist **")
@@ -38,11 +43,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(arg) == 1:
             print("** instance id  mising **")
-        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+        elif "{}.{}".format(arg[0], arg[1]) not in objdict:
             print("** no instance found **")
 
     def do_destroy(self, args):
-        """deletes aninstance based on the class name and id"""
+        """deletes an instance based on the class name and id"""
         arg = parse(args)
         objdict = storage.all()
         if len(arg) == 0:
@@ -51,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
-        elif "{}.{}"format(arg[0], arg[1]) not in objdict:
+        elif "{}.{}".format(arg[0], arg[1]) not in objdict:
             print("** no instance found **")
 
     def all(self, args):
