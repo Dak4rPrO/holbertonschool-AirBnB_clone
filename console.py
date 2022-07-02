@@ -1,6 +1,7 @@
-#!/ution line over-indented for visual indentcontinuation line over-indented for visual indentsr/bin/python3
+#!/usr/bin/python3
 
 from models.base_model import BaseModel
+from models import storage
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
@@ -34,12 +35,12 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ def create """
         args.split(" ")
-        with open(file.json, 'r') as f:
-            json.dump(self., f)
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] not in self.my_dict:
+        elif args not in self.my_dict:
             print("** class doesn't exist **")
+        else:
+            print(args.id)
 
     def do_show(self, args):
         """prints the string representaiton of an string"""

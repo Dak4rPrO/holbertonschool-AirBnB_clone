@@ -40,7 +40,6 @@ class BaseModel():
         """ def save """
         storage.save()
         self.updated_at = datetime.now()
-        self.created_at = datetime.now()
 
     def to_dict(self):
         """return a dictionary containning all keys/values of dict"""
