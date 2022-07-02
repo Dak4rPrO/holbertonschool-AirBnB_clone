@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/ution line over-indented for visual indentcontinuation line over-indented for visual indentsr/bin/python3
 
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -16,8 +16,8 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """class of prompt"""
     prompt = '(hbnb) '
-    my_dict= {'Amenity' : Amenity, 'BaseModel' : BaseModel, 'City' : City,
-              'Place' : Place, 'Review' : Review, 'State' : State, 'User' : User}
+    my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+               'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
     def do_quit(self, args):
         """ Quit command to exit the program """
@@ -28,7 +28,6 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """ aca deje solo el self, porque si pones el args, da Traceback. cuando leas esto, borra el comentario xd """
         """dont do anything if theres an empty line"""
         pass
 
@@ -71,10 +70,11 @@ class HBNBCommand(cmd.Cmd):
     def all(self, args):
         """prints allstring representation of all instances
         based or not on the class name"""
-        args.split()        
+        args.split()
         objdict = storage.all()
         if len(args) == 0:
-            print("** class name doesn't exist **") 
+            print("** class name doesn't exist **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
