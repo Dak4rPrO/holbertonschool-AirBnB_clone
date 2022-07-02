@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """dont do anything if theres an empty line"""
         pass
     
-    def do_help(self, arg: str) -> bool | None:
+    def do_help(self, arg):
         return super().do_help(arg)
 
     def do_create(self, args):
