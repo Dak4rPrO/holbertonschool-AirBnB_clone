@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
         """ exit the program"""
         return True
 
-    def emptyline(self):
+    def emptyline(self, args):
         """dont do anything if theres an empty line"""
         pass
 
