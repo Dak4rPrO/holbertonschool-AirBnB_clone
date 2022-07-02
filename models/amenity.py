@@ -3,4 +3,4 @@
 
 
 class Amenity:
-    name = ""
+    name = str("")

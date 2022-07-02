@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ def create """
-        args.split()
+        args.split(" ")
         with open(file.json, 'r') as f:
             json.dump(self., f)
         if len(args) == 0:
@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
-        args.split()
+        args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class doesn't exist **")
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         """deletes an instance based on the class name and id"""
-        args.split()
+        args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class name missing **")

@@ -3,5 +3,5 @@
 
 
 class City:
-    state_id = ""
-    name = ""
+    state_id = str("")
+    name = str("")

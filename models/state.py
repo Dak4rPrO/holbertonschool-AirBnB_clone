@@ -3,4 +3,5 @@
 
 
 class State:
-    name = ""
+    state_id = str("")
+    name = str("")
