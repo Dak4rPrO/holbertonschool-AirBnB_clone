@@ -9,17 +9,19 @@ from models.review import Review
 from models.state import State
 from models.user import User
 import cmd
+import sys
 
 """command interpreter"""
 """from models import storage"""
+
+my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+               'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
 
 class HBNBCommand(cmd.Cmd):
     """class of prompt"""
     prompt = '(hbnb) '
-    my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-               'Place': Place, 'Review': Review, 'State': State, 'User': User}
-
+    
     def do_quit(self, args):
         """ Quit command to exit the program """
         return True
@@ -28,9 +30,12 @@ class HBNBCommand(cmd.Cmd):
         """ exit the program"""
         return True
 
-    def emptyline(self, args):
+    def emptyline(self):
         """dont do anything if theres an empty line"""
         pass
+    
+    def do_help(self, arg: str) -> bool | None:
+        return super().do_help(arg)
 
     def do_create(self, args):
         """ def create """
