@@ -41,6 +41,7 @@ class Test_Basemodel():
         bm = BaseModel()
         self.assertNotIn(None, mb.__dict__.values())
 
+
 class testBM_save(self):
     """test for save method"""
 
@@ -67,6 +68,7 @@ class testBM_save(self):
         with open("file.json", "r") as f:
             self.assertIn(bmid, f.read())
 
+
 class test_to_dict():
     """test method to_dict"""
 
@@ -80,13 +82,15 @@ class test_to_dict():
         bm = BaseModel()
         bm.id = "123456"
         bm.created_at = updated_at = dt
-        tdict = {'id': '123456', '__class__' : 'BaseModel',
-                 'created_at' : dt.isoformat(), 'updated_at' : dt.isoformat()}
+        tdict = {'id': '123456', '__class__': 'BaseModel',
+                 'created_at': dt.isoformat(), 'updated_at': dt.isoformat()}
 
     def test_datetime_attr_are_str(self):
         bm = BaseModel()
         bm_dict = bm.to_dict()
         self.assertEqual(str, type(bm_dict["created_at"]))
         self.assertEqual(str, type(bm_dict["updated_at"]))
+
+
 if __name__ == '__main__':
     unittest.main()
