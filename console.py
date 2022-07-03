@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ def create """
-        arg = args.split()
+        arg = args.split(" ")
         if arg[0] is None or arg[0] == "":
             print("** class name missing **")
         elif arg[0] in my_dict:
@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
-        args.split()
+        args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class doesn't exist **")
@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         """deletes an instance based on the class name and id"""
-        args.split()
+        args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
     def all(self, args):
         """prints allstring representation of all instances
         based or not on the class name"""
-        args.split()
+        args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class name doesn't exist **")
