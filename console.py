@@ -14,6 +14,7 @@ from models.base_model import BaseModel
 
 my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
            'Place': Place, 'Review': Review, 'State': State, 'User': User}
+list_id = []
 
 
 class HBNBCommand(cmd.Cmd):
@@ -43,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg[0] in my_dict:
             object = getattr(sys.modules[__name__], arg[0])
+            list_id.append(object)
             inst = object()
             print(inst.id)
         else:
@@ -50,17 +52,26 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
-        args.split(" ")
-        objdict = storage.all()
-        if len(args) == 0:
-            print("** class doesn't exist **")
-        elif args[0] not in HBNBCommand.__class__:
+        arg = args.split(" ")
+        if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        elif len(args) == 1:
-            print("** instance id  mising **")
-        elif "{args[0]}.{args[1]}" not in objdict:
+        elif arg[0] not in my_dict:
+            print("** class doesn't exist **")
+        if arg[1] is None or arg[1] == "":
+            print("** instance id missing **")
+        elif arg[1]:
+            i = arg[1]
+            for i in range(0, len(list_id)):
+                self.__dict__['__class__'] = self.__class__.__name__
+                print(self.__dict__)
+        else:
             print("** no instance found **")
-
+        
+        
+        
+        
+        
+        
     def do_destroy(self, args):
         """deletes an instance based on the class name and id"""
         args.split(" ")
