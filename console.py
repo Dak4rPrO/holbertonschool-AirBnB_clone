@@ -20,7 +20,7 @@ my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
 class HBNBCommand(cmd.Cmd):
     """class of prompt"""
     prompt = '(hbnb) '
-    
+
     def do_quit(self, args):
         """ Quit command to exit the program """
         return True
@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """dont do anything if theres an empty line"""
         pass
-    
+
     def do_help(self, arg):
         return super().do_help(arg)
 
