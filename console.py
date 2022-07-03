@@ -36,18 +36,6 @@ class HBNBCommand(cmd.Cmd):
     def do_help(self, arg):
         return super().do_help(arg)
 
-    def do_create(self, args):
-        """ def create """
-        arg = args.split(" ")
-        if arg[0] is None or arg[0] == "":
-            print("** class name missing **")
-        elif arg[0] in my_dict:
-            object = getattr(sys.modules[__name__], arg[0])
-            inst = object()
-            print(inst.id)
-        else:
-            print("** class doesn't exist **")
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
