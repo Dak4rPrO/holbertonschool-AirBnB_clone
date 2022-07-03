@@ -65,7 +65,7 @@ class testBM_save(self):
         bm.save()
         bmid = "BaseModel." + bm.id
         with open("file.json", "r") as f:
-            self.assertIn(bsid, f.read())
+            self.assertIn(bmid, f.read())
 
 class test_to_dict():
     """test method to_dict"""
@@ -80,11 +80,8 @@ class test_to_dict():
         bm = BaseModel()
         bm.id = "123456"
         bm.created_at = updated_at = dt
-        tdict = {
-            'id': '123456'
-            '__class__': 'BaseModel'
-            'created_at': dt.isoformat()
-            'updated_at': d.isoformat()
+        tdict = {'id': '123456', '__class__' : 'BaseModel',
+                 'created_at' : dt.isoformat(), 'updated_at' : dt.isoformat()}
 
     def test_datetime_attr_are_str(self):
         bm = BaseModel()
