@@ -1,31 +1,29 @@
 #!/usr/bin/python3
 
-""" Console module """
+
 import cmd
+
+"""command interpreter"""
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Class for HBNB console """
-    prompt = "(hbnb) "
+    """class of prompt"""
+    prompt = '(hbnb) '
 
-    def do_quit(self, arg):
-        """Quit command to exit the program
-        """
+    def do_quit(self, args):
+        """ Quit command to exit the program """
         return True
 
-    def do_EOF(self, arg):
-        """Ends the program
-        """
+    def do_EOF(self, args):
+        """ exit the program"""
         return True
 
     def emptyline(self):
-        """In case of an empty line
-        """
+        """dont do anything if theres an empty line"""
         pass
 
-    def do_help(self, line):
-        """Show helpfull messages"""
-        super().do_help(line)
+    def do_help(self, arg):
+        super().do_help(arg)
 
 
 if __name__ == '__main__':
