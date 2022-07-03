@@ -13,9 +13,6 @@ import sys
 
 """command interpreter"""
 
-my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-           'Place': Place, 'Review': Review, 'State': State, 'User': User}
-
 
 class HBNBCommand(cmd.Cmd):
     """class of prompt"""
