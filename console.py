@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
 """ Console 0.1 """
-from models.base_model import BaseModel
-from models import storage
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
 import cmd
 import sys
+from models import storage
+from models.city import City
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
 my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
            'Place': Place, 'Review': Review, 'State': State, 'User': User}
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(args) == 1:
             print("** instance id  mising **")
-        elif "{}.{}".format(args[0], args[1]) not in objdict:
+        elif "{args[0]}.{args[1]}" not in objdict:
             print("** no instance found **")
 
     def do_destroy(self, args):

@@ -4,8 +4,10 @@
 
 import numbers
 
+from models.base_model import BaseModel
 
-class Place:
+
+class Place(BaseModel):
     city_id = str("")
     user_id = str("")
     name = str("")
