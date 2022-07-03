@@ -1,37 +1,31 @@
 #!/usr/bin/python3
 
-from models.base_model import BaseModel
-from models import storage
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+""" Console module """
 import cmd
-import sys
-
-"""command interpreter"""
 
 
 class HBNBCommand(cmd.Cmd):
-    """class of prompt"""
-    prompt = '(hbnb) '
+    """ Class for HBNB console """
+    prompt = "(hbnb) "
 
-    def do_quit(self, args):
-        """ Quit command to exit the program """
+    def do_quit(self, arg):
+        """Quit command to exit the program
+        """
         return True
 
-    def do_EOF(self, args):
-        """ exit the program"""
+    def do_EOF(self, arg):
+        """Ends the program
+        """
         return True
 
     def emptyline(self):
-        """dont do anything if theres an empty line"""
+        """In case of an empty line
+        """
         pass
 
-    def do_help(self, arg):
-        return super().do_help(arg)
+    def do_help(self, line):
+        """Show helpfull messages"""
+        super().do_help(line)
 
 
 if __name__ == '__main__':
