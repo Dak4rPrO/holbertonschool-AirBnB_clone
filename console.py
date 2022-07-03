@@ -12,10 +12,9 @@ import cmd
 import sys
 
 """command interpreter"""
-"""from models import storage"""
 
 my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-               'Place': Place, 'Review': Review, 'State': State, 'User': User}
+           'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -39,13 +38,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ def create """
-        args.split(" ")
-        if len(args) == 0:
+        arg = args.split(" ")
+        if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        elif args not in self.my_dict:
-            print("** class doesn't exist **")
+        elif arg[0] in my_dict:
+            object = getattr(sys.modules[__name__], arg[0])
+            inst = object()
+            print(inst.id)
         else:
-            print(args.id)
+            print("** class doesn't exist **")
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
