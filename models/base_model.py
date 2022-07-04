@@ -11,18 +11,16 @@ class BaseModel():
     """ class BaseModel that defines all common
     attributes/methods for other classes """
 
-    def __init__(self, *arg, **kwargs):
-        """def init"""
+    def __init__(self, *args, **kwargs):
+        """ initialization BaseModel"""
         time_set = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs is not None and len(kwargs) != 0:
-            for name, value in kwargs.items():
-                if name == 'id':
+            for key, value in kwargs.items():
+                if key == 'id':
                     self.id = value
-                elif name == 'created_at':
-                    self.created_at = datetime.strptime(value, time_set)
-                elif name == 'updated_at':
-                    self.updated_at = datetime.strptime(value, time_set)
-                elif name == "__class__":
+                elif key == 'created_at' or key == 'updated_at':
+                    value = datetime.strptime(value, time_set)
+                elif key == "__class__":
                     pass
                 else:
                     setattr(self, name, value)
@@ -36,14 +34,13 @@ class BaseModel():
         """ def str """
         return(f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
-    @classmethod
     def save(self):
         """ def save """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """return a dictionary containning all keys/values of dict"""
+        """ Returns a dictionary containing all the keys:values ​​of dict """
         self.created_at = self.created_at.isoformat()
         self.updated_at = self.updated_at.isoformat()
         self.__dict__['__class__'] = self.__class__.__name__
