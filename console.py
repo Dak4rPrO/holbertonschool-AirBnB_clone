@@ -15,13 +15,12 @@ from models.review import Review
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
+my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+               'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
 class HBNBCommand(cmd.Cmd):
     """ Class that defines a small command interpreter """
     prompt = "(hbnb) "
-
-    my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-               'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
     def do_quit(self, args):
         """ Quit command to exit the program """
@@ -44,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split(" ")
         if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        elif arg[0] in self.my_dict:
+        elif arg[0] in my_dict:
             object = getattr(sys.modules[__name__], arg[0])
             inst = object()
             print(inst.id)
@@ -55,9 +54,9 @@ class HBNBCommand(cmd.Cmd):
         """prints the string representaiton of an string"""
         objdict = storage.all()
         arg = args.split(" ")
-        if arg[0] is None or arg[0] == "":
+        if arg[0] == "":
             print("** class name missing **")
-        if arg[0] in self.my_dict:
+        elif arg[0] in my_dict:
             if len(arg) == 1:
                 print("** instance id  missing **")
                 return

@@ -12,7 +12,7 @@ class BaseModel():
     attributes/methods for other classes """
 
     def __init__(self, *args, **kwargs):
-        """ initialization BaseModel"""
+        """ Initialization BaseModel """
         time_set = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs is not None and len(kwargs) != 0:
             for key, value in kwargs.items():
