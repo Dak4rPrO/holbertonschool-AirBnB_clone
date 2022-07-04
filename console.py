@@ -2,6 +2,8 @@
 
 """ Console 0.1 """
 
+import ast
+import shlex
 import cmd
 import sys
 from models import storage
@@ -85,10 +87,38 @@ class HBNBCommand(cmd.Cmd):
         """ prints allstring representation of all instances
         based or not on the class name """
         args.split(" ")
-        objdict = storage.all()
+        obj_dict = storage.all()
         if len(args) == 0:
             print("** class name doesn't exist **")
 
+    def do_update(self, arg):
+        """update an instance based on the class name and id"""
+        arg = shlex.split(arg)
+        if len(arg) < 1:
+            print("** class name missing **")
+            return
+        if arg[0] not in self.my_dict:
+            print("** class doesn't exist **")
+            return
+        if len(arg) < 2:
+            print("** instance id missing **")
+            return
+        obj = storage.get_object(arg[1])
+        if obj:
+            if len(arg) < 3:
+                print("** attribute name missing **")
+            elif len(arg) < 4:
+                print("** value missing **")
+            else:
+                """check invalid data type"""
+                try:
+                    setattr(obj, arg[2], ast.literal_eval(arg[3].strip()))
+                except (ValueError, SyntaxError):
+                    setattr(obj, arg[2], arg[3])
+                obj.save()
+        else:
+            print("** no instance found **")
+            
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
