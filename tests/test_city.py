@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    module
-"""
+""" module """
 
 import os
 import pep8
