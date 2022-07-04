@@ -118,7 +118,19 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
         else:
             print("** no instance found **")
-            
+
+    def do_count(self):
+        """count"""
+        arg = shlex.split(arg)
+        if len(arg) < 1:
+            print("** class name missing **")
+            return
+        count = 0
+        obj = storage.all()
+        for key in obj:
+            if obj[key].__class__.__name__ == arg[0]:
+                count += 1
+        print(count)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
