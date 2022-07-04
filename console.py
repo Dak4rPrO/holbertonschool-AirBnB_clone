@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 """ Console 0.1 """
+
 import cmd
 import sys
 from models import storage
@@ -12,14 +13,13 @@ from models.review import Review
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
-my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-           'Place': Place, 'Review': Review, 'State': State, 'User': User}
-list_id = []
-
 
 class HBNBCommand(cmd.Cmd):
     """ Class that defines a small command interpreter """
     prompt = "(hbnb) "
+    
+    my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+           'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
     def do_quit(self, args):
         """ Quit command to exit the program """
@@ -42,9 +42,8 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split(" ")
         if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        elif arg[0] in my_dict:
+        elif arg[0] in self.my_dict:
             object = getattr(sys.modules[__name__], arg[0])
-            list_id.append(object)
             inst = object()
             print(inst.id)
         else:
@@ -52,28 +51,25 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """prints the string representaiton of an string"""
+        objdict = storage.all()
         arg = args.split(" ")
         if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        elif arg[0] not in my_dict:
-            print("** class doesn't exist **")
-        if arg[1] is None or arg[1] == "":
-            print("** instance id missing **")
-        elif arg[1]:
-            i = arg[1]
-            for i in range(0, len(list_id)):
-                self.__dict__['__class__'] = self.__class__.__name__
-                print(self.__dict__)
+        if arg[0] in self.my_dict:        
+            if len(arg) == 1:
+                print("** instance id  missing **")
+                return
+            arguments1_2 = f"{arg[0]}.{arg[1]}"
+            if arguments1_2 not in objdict:
+                print("** no instance found **")
+                return
+            print(storage.all()[arguments1_2])
         else:
-            print("** no instance found **")
-        
-        
-        
-        
-        
+            print("** class doesn't exist **")
+            return
         
     def do_destroy(self, args):
-        """deletes an instance based on the class name and id"""
+        """ deletes an instance based on the class name and id """
         args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
@@ -86,13 +82,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def all(self, args):
-        """prints allstring representation of all instances
-        based or not on the class name"""
+        """ prints allstring representation of all instances
+        based or not on the class name """
         args.split(" ")
         objdict = storage.all()
         if len(args) == 0:
             print("** class name doesn't exist **")
-
+            
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

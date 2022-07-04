@@ -10,3 +10,58 @@ def do_show(self, args):
             print("** instance id  mising **")
         elif "{args[0]}.{args[1]}" not in objdict:
             print("** no instance found **")
+            
+        
+            
+---------------------------
+
+"""if arg[0] is None or arg[0] == "":"""
+
+
+
+
+
+
+
+
+
+def do_show(self, args):
+        """prints the string representaiton of an string"""
+        arg = args.split(" ")
+        if arg[0] is None or arg[0] == "":
+            print("** class name missing **")
+        elif arg[0] not in my_dict:
+            print("** class doesn't exist **")
+        if arg[1] is None or arg[1] == "":
+            print("** instance id missing **")
+        elif arg[1]:
+            i = arg[1]
+            for i in range(0, len(list_id)):
+                self.__dict__['__class__'] = self.__class__.__name__
+                print(self.__dict__)
+        else:
+            print("** no instance found **")
+
+
+
+
+--------------------------------
+
+def do_show(self, args):
+        """prints the string representaiton of an string"""
+        objdict = storage.all()
+        arg = args.split(" ")
+        if arg[0] is None or arg[0] == "":
+            print("** class name missing **")
+        if arg[0] in my_dict:        
+            if len(arg) == 1:
+                print("** instance id  missing **")
+                return
+            arguments1_2 = f"{arg[0]}.{arg[1]}"
+            if arguments1_2 not in objdict:
+                print("** no instance found **")
+                return
+            print(storage.all()[arguments1_2])
+        else:
+            print("** class doesn't exist **")
+            return   
