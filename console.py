@@ -17,9 +17,9 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """ Class that defines a small command interpreter """
     prompt = "(hbnb) "
-    
+
     my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-           'Place': Place, 'Review': Review, 'State': State, 'User': User}
+               'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
     def do_quit(self, args):
         """ Quit command to exit the program """
@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split(" ")
         if arg[0] is None or arg[0] == "":
             print("** class name missing **")
-        if arg[0] in self.my_dict:        
+        if arg[0] in self.my_dict:
             if len(arg) == 1:
                 print("** instance id  missing **")
                 return
@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
             return
-        
+
     def do_destroy(self, args):
         """ deletes an instance based on the class name and id """
         args.split(" ")
@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         objdict = storage.all()
         if len(args) == 0:
             print("** class name doesn't exist **")
-            
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
