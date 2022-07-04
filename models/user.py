@@ -5,6 +5,8 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
+    """ user initialization """
+
     email = str("")
     password = str("")
     first_name = str("")

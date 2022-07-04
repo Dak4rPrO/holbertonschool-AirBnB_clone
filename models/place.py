@@ -8,6 +8,8 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
+    """ Place initialization """
+
     city_id = str("")
     user_id = str("")
     name = str("")
