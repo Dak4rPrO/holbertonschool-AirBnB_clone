@@ -16,7 +16,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 
 my_dict = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
-               'Place': Place, 'Review': Review, 'State': State, 'User': User}
+           'Place': Place, 'Review': Review, 'State': State, 'User': User}
 
 class HBNBCommand(cmd.Cmd):
     """ Class that defines a small command interpreter """
