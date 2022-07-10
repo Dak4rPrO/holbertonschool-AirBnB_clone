@@ -24,8 +24,7 @@ section.filters button:hover {
 
 .locations, .amenities {
   height: 100%;
-  width: 25%;
-  float: left;
+  width: 25%;    float: left;
 }
 
 .locations h3, .amenities h3 {
@@ -41,4 +40,8 @@ section.filters button:hover {
 
 .locations {
   border-right: 1px solid #DDDDDD;
+}
+
+.popover {
+  list-style: none;
 }
